@@ -86,12 +86,12 @@ export default function Hero() {
 
         {/* Image side — scale + fade in slightly later */}
         <motion.div
-          className="order-1 md:order-2 flex justify-center md:justify-end"
+          className="order-1 md:order-2 flex justify-start md:justify-end"
           initial="hidden"
           animate={controls}
           variants={image}
         >
-          <div className="relative w-72 h-104 md:w-full md:h-147.75 rounded-2xl overflow-hidden">
+          <div className="relative w-30.75 h-38.5 md:w-full md:h-147.75 rounded-2xl overflow-hidden">
             {/* <PortraitPlaceholder /> */}
             <Image
             src="/images/blessing.png"
