@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Stagger, StaggerItem } from "@/components/ui/AnimateIn";
 import { WebDashboardMockup, PopwupMobileMockup, UvivioMobileMockup } from "@/components/ui/Mockups";
+import Image from "next/image";
 
 const EASE_OUT = [0.23, 1, 0.32, 1] as const;
 
@@ -14,6 +14,7 @@ const projects = [
     description:
       "Designing an adaptive dashboard for a remote learning product that offers personalized layouts and real-time inspired interfaces.",
     mockup: <WebDashboardMockup />,
+    image: "/images/project-1.png",
     size: "normal",
     href: "/projects/uvivio",
   },
@@ -24,6 +25,8 @@ const projects = [
       "Designing an intuitive interface for a space booking platform that facilitates last-minute digital and physical experience hosting.",
     mockup: <PopwupMobileMockup />,
     size: "normal",
+    image: "/images/project-2.png",
+
     href: "/projects/powpup",
   },
   {
@@ -33,6 +36,8 @@ const projects = [
       "Designing a platform designed to make remote learning accessible and sustainable for millions of students across Africa.",
     mockup: <UvivioMobileMockup />,
     size: "wide",
+    image: "/images/project-3.png",
+
     href: "/projects/uvivio-mobile",
   },
 ];
@@ -41,25 +46,36 @@ export default function Projects() {
   return (
     <section id="projects" className="bg-[#000000] py-20 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
-        <Stagger className="grid md:grid-cols-2 gap-5" stagger={0.1}>
+        <div className="grid md:grid-cols-2 gap-5" >
           {projects.map((project) => (
-            <StaggerItem
+            <div
               key={project.title}
               className={`${project.size === "wide" ? "md:col-span-2" : ""}`}
             >
               {/* card-hover applies CSS lift on pointer devices */}
-              <div className="card-hover bg-black rounded-2xl overflow-hidden h-full">
+              <div className="card-hover bg-black  overflow-hidden h-full">
                 {/* Thumbnail with subtle zoom on hover */}
                 <div
-                  className={`w-full ${project.size === "wide" ? "h-64 md:h-80" : "h-52 md:h-64"} overflow-hidden`}
+                  className={`relative w-full ${project.size === "wide" ? "h-75 md:h-155" : "h-52 md:h-155"} overflow-hidden`}
                 >
-                  <motion.div
+                  {project.image ?
+                <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover"
+                />  
+
+                :
+<motion.div
                     className="w-full h-full"
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.5, ease: EASE_OUT }}
                   >
                     {project.mockup}
                   </motion.div>
+                }
+                  
                 </div>
 
                 {/* Content */}
@@ -103,9 +119,9 @@ export default function Projects() {
                   </Link>
                 </div>
               </div>
-            </StaggerItem>
+            </div>
           ))}
-        </Stagger>
+        </div>
       </div>
     </section>
   );

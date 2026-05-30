@@ -1,44 +1,116 @@
 "use client";
 
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { AnimateIn } from "@/components/ui/AnimateIn";
 
+const EASE_OUT = [0.23, 1, 0.32, 1] as const;
+
+const testimonials = [
+  {
+    quote:
+      "Damola has a strong ability to bring structure to complex ideas. While working together, I saw how intentional he is with his design decisions not just focusing on visuals, but on how users actually interact with products.",
+    name: "Adedayo Babalola",
+    role: "Product Designer",
+  },
+  {
+    quote:
+      "He brings a rare balance of creativity and product thinking. Every screen has clear purpose, and his process always connects user behavior to measurable business outcomes.",
+    name: "Kemi Akinwale",
+    role: "Design Lead",
+  },
+  {
+    quote:
+      "Damola is excellent at simplifying complex flows. He helps teams move faster because his decisions are grounded in research, clarity, and practical execution.",
+    name: "Joshua Adeoye",
+    role: "Product Manager",
+  },
+  {
+    quote:
+      "Working with Damola made our product feel more coherent end-to-end. He improved usability, visual consistency, and the confidence of our implementation team.",
+    name: "Mary Oloruntoba",
+    role: "Founder",
+  },
+];
+
 export default function Testimonials() {
+  const [index, setIndex] = useState(0);
+
+  const previous = () => {
+    setIndex((current) => (current - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const next = () => {
+    setIndex((current) => (current + 1) % testimonials.length);
+  };
+
+  const currentItem = testimonials[index];
+
   return (
-    <section id="testimonials" className="bg-[#0A0A0A] py-20 px-6 md:px-12">
+    <section id="testimonials" className="bg-[#030303] py-24 md:py-28 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
+        <AnimateIn from="none">
+          <div className="flex flex-col items-center text-center">
+            <p className="text-[#7B7B7B] text-sm tracking-[0.35em] uppercase">What They Say</p>
 
-        <AnimateIn>
-          <span className="text-gray-500 text-xs tracking-[0.25em] uppercase block mb-10">
-            Testimonials
-          </span>
-        </AnimateIn>
+            <div className="mt-10 min-h-[220px] md:min-h-[290px] max-w-5xl flex items-center">
+              <AnimatePresence mode="wait">
+                <motion.blockquote
+                  key={`${currentItem.name}-${index}`}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -16 }}
+                  transition={{ duration: 0.42, ease: EASE_OUT }}
+                  className="text-[#ECECEC] text-[18px] md:text-[24px] leading-[1.22] tracking-[-0.01em]"
+                >
+                  {currentItem.quote}
+                </motion.blockquote>
+              </AnimatePresence>
+            </div>
 
-        {/* Slight scale-in from 0.97, not 0 — Emil's rule */}
-        <AnimateIn delay={0.05}>
-          <div className="bg-[#1a1a1a] rounded-2xl p-8 md:p-12 max-w-3xl">
-            <svg className="w-8 h-8 text-white/20 mb-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-            </svg>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`meta-${currentItem.name}-${index}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3, ease: EASE_OUT }}
+                className="mt-1"
+              >
+                <p className="text-white font-semibold text-sm tracking-[0.06em] uppercase">
+                  {currentItem.name}
+                </p>
+                <p className="mt-2 text-[#C6C6C6] text-xs  tracking-[0.2em] uppercase">
+                  {currentItem.role}
+                </p>
+              </motion.div>
+            </AnimatePresence>
 
-            <blockquote className="text-gray-300 text-base md:text-lg leading-relaxed mb-8">
-              Damola has a strong ability to bring structure to complex ideas.
-              While working together, I saw how intentional he is with his design
-              decisions — not just focusing on visuals, but on how users actually
-              interact with products.
-            </blockquote>
+            <div className="mt-10 flex items-center gap-4">
+              <button
+                type="button"
+                onClick={previous}
+                aria-label="Previous testimonial"
+                className="btn w-14 h-14 rounded-2xl border border-white/20 text-white grid place-items-center hover:border-white/50 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
 
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
-                <span className="text-white text-xs font-semibold">DC</span>
-              </div>
-              <div>
-                <p className="text-white text-sm font-medium">Damola Christiana</p>
-                <p className="text-gray-500 text-xs mt-0.5">Senior Product Designer</p>
-              </div>
+              <button
+                type="button"
+                onClick={next}
+                aria-label="Next testimonial"
+                className="btn w-14 h-14 rounded-2xl border border-white/20 text-white grid place-items-center hover:border-white/50 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m9 5 7 7-7 7" />
+                </svg>
+              </button>
             </div>
           </div>
         </AnimateIn>
-
       </div>
     </section>
   );

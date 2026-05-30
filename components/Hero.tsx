@@ -3,6 +3,7 @@
 import { motion, useAnimationControls } from "framer-motion";
 import { useEffect } from "react";
 import { PortraitPlaceholder } from "@/components/ui/Mockups";
+import Image from "next/image";
 
 const EASE_OUT = [0.23, 1, 0.32, 1] as const;
 
@@ -30,7 +31,7 @@ export default function Hero() {
   }, [controls]);
 
   return (
-    <section className="min-h-screen bg-[#000000] flex items-center pt-20 pb-16 px-6 md:px-12">
+    <section className="min-h-screen  flex items-center pt-20 pb-16 px-6 md:px-12">
       <div className="w-full max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-8 items-center">
 
         {/* Text side — staggered entry */}
@@ -42,9 +43,9 @@ export default function Hero() {
         >
           <motion.span
             variants={item}
-            className="text-[#C6C6C6] text-xs tracking-[0.25em] uppercase"
+            className="text-[#C6C6C6] w-fit rounded-4xl p-2 border-[#1A161699] border text-xs tracking-[0.25em] uppercase"
           >
-            Product Designer
+            Product Designer 
           </motion.span>
 
           <motion.h1
@@ -70,13 +71,13 @@ export default function Hero() {
           <motion.div variants={item} className="flex items-center gap-4 mt-2">
             <a
               href="#projects"
-              className="btn bg-white text-black text-xs tracking-[0.15em] px-6 py-3 rounded-full font-medium hover:bg-gray-200 transition-colors"
+              className="btn bg-white text-black text-xs tracking-[0.15em] px-6 py-3  font-bold hover:bg-gray-200 transition-colors"
             >
-              VIEW PROJECTS
+             CASE STUDIES
             </a>
             <a
               href="#contact"
-              className="btn text-white border border-white/40 text-xs tracking-[0.15em] px-6 py-3 rounded-full hover:border-white transition-colors"
+              className="btn text-white font-bold border border-white/40 text-xs tracking-[0.15em] px-6 py-3  hover:border-white transition-colors"
             >
               CONTACT ME
             </a>
@@ -90,8 +91,13 @@ export default function Hero() {
           animate={controls}
           variants={image}
         >
-          <div className="relative w-72 h-104 md:w-full md:h-128 rounded-2xl overflow-hidden">
-            <PortraitPlaceholder />
+          <div className="relative w-72 h-104 md:w-full md:h-132 rounded-2xl overflow-hidden">
+            {/* <PortraitPlaceholder /> */}
+            <Image
+            src="/images/blessing.png"
+            alt="Blessing Damola Eyiins"
+           fill
+            />
           </div>
         </motion.div>
 

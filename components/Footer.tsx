@@ -28,13 +28,13 @@ export default function Footer() {
         </motion.h2>
 
         <motion.a
-          href="mailto:oyelolasanya@gmail.com"
+          href="mailto:eyinlablessing1@gmail.com"
           className="text-[#C6C6C6] text-sm tracking-widest hover:text-white transition-colors duration-200"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.5, delay: 0.2, ease: EASE_OUT }}
         >
-          oyelolasanya@gmail.com
+          eyinlablessing1@gmail.com
         </motion.a>
 
         {/* Social links — stagger */}

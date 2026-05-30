@@ -1,70 +1,135 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AnimateIn, Stagger, StaggerItem } from "@/components/ui/AnimateIn";
-import { MobileDesignThumb, WebDesignThumb, ProductDesignThumb } from "@/components/ui/Mockups";
+import { AnimateIn } from "@/components/ui/AnimateIn";
+import { ProductDesignThumb, UvivioMobileMockup } from "@/components/ui/Mockups";
 
 const EASE_OUT = [0.23, 1, 0.32, 1] as const;
 
-const services = [
-  { label: "MOBILE APP DESIGN", thumb: <MobileDesignThumb /> },
-  { label: "WEBSITE DESIGN", thumb: <WebDesignThumb /> },
-  { label: "PRODUCT DESIGN", thumb: <ProductDesignThumb /> },
+const sideServices = [
+  { label: "MOBILE APP DESIGN", kind: "mobile" as const },
+  { label: "WEBSITE DESIGN", kind: "web" as const },
 ];
+
+function ProductIcon() {
+  return (
+    <svg className="w-7 h-7 text-white/95" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3.5" y="4.5" width="17" height="15" rx="2.5" />
+      <path d="M9 4.5v15M3.5 10h17" />
+    </svg>
+  );
+}
+
+function SparkleIcon() {
+  return (
+    <svg className="w-7 h-7 text-white/95" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7.5 3.5 9 7l3.5 1.5L9 10l-1.5 3.5L6 10l-3.5-1.5L6 7l1.5-3.5Z" />
+      <path d="m16 6 1 2.3L19.3 9 17 10l-1 2.3-1-2.3L12.7 9 15 8.3 16 6Z" />
+      <path d="m14 14 1.4 3.1L18.5 18l-3.1 1.1L14 22l-1.4-2.9L9.5 18l3.1-.9L14 14Z" />
+    </svg>
+  );
+}
+
+function ScreenIcon() {
+  return (
+    <svg className="w-7 h-7 text-white/95" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3.5" y="5" width="17" height="12.5" rx="1.8" />
+    </svg>
+  );
+}
 
 export default function Services() {
   return (
-    <section id="services" className="bg-[#000000] py-20 px-6 md:px-12">
+    <section id="services" className="bg-[#000000] py-24 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
-
-        <AnimateIn>
-          <div className="flex items-end justify-between mb-10">
-            <h2 className="text-white font-bold text-2xl md:text-3xl uppercase tracking-tight">
-              Product Design
-            </h2>
-            <a
-              href="#contact"
-              className="btn hidden md:inline-flex items-center gap-2 text-white text-xs tracking-[0.15em] border border-white/30 px-5 py-2.5 rounded-full hover:bg-white hover:text-black transition-all duration-200"
-            >
-              START A PROJECT →
-            </a>
+        <AnimateIn from="none">
+          <div className="flex justify-center mb-12">
+            <span className="text-[#B2B2B2] text-xs tracking-[0.22em] uppercase border border-white/12 bg-[#0f0f0f] rounded-full px-5 py-2.5">
+              Services
+            </span>
           </div>
         </AnimateIn>
 
-        <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-4" stagger={0.1} delay={0.05}>
-          {services.map(({ label, thumb }) => (
-            <StaggerItem key={label}>
-              <div className="card-hover bg-[#1a1a1a] rounded-2xl overflow-hidden cursor-pointer">
-                {/* Thumbnail with zoom on card hover */}
-                <div className="overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+          <AnimateIn className="lg:col-span-6 lg:row-span-2" from="left">
+            <article className="card-hover h-full rounded-2xl overflow-hidden bg-[#050505] border border-white/5 flex flex-col">
+              <div className="px-8 pt-9 pb-6">
+                <ProductIcon />
+                <h3 className="mt-7 text-white font-bold text-4xl leading-none uppercase tracking-tight">
+                  Product Design
+                </h3>
+              </div>
+
+              <div className="px-3 pb-3 grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1">
+                <div className="rounded-xl overflow-hidden min-h-[260px]">
                   <motion.div
-                    className="w-full h-52"
-                    whileHover={{ scale: 1.04 }}
+                    className="w-full h-full"
+                    whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.45, ease: EASE_OUT }}
                   >
-                    {thumb}
+                    <ProductDesignThumb />
                   </motion.div>
                 </div>
-                <div className="p-5">
-                  <span className="text-gray-300 text-xs tracking-[0.15em] uppercase">
-                    {label}
-                  </span>
+                <div className="rounded-xl overflow-hidden min-h-[260px]">
+                  <motion.div
+                    className="w-full h-full"
+                    whileHover={{ scale: 1.03 }}
+                    transition={{ duration: 0.45, ease: EASE_OUT }}
+                  >
+                    <UvivioMobileMockup />
+                  </motion.div>
                 </div>
               </div>
-            </StaggerItem>
+
+              <p className="px-8 pb-8 text-[#A4A4A4] text-sm leading-relaxed max-w-lg">
+                End-to-end design from research to high-fidelity prototyping and design system scaling.
+              </p>
+            </article>
+          </AnimateIn>
+
+          {sideServices.map((service, index) => (
+            <AnimateIn key={service.label} className="lg:col-span-3" delay={0.04 * (index + 1)}>
+              <article className="card-hover bg-[#050505] border border-white/5 rounded-2xl p-7 min-h-[250px] flex flex-col">
+                {service.kind === "mobile" ? <SparkleIcon /> : <ScreenIcon />}
+                <div className="flex-1" />
+                <h4 className="text-white font-semibold text-base leading-tight uppercase">
+                  {service.label}
+                </h4>
+              </article>
+            </AnimateIn>
           ))}
-        </Stagger>
 
-        {/* Mobile CTA */}
-        <AnimateIn className="mt-8 flex justify-center md:hidden">
-          <a
-            href="#contact"
-            className="btn inline-flex items-center gap-2 text-white text-xs tracking-[0.15em] border border-white/30 px-6 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-200"
-          >
-            START A PROJECT →
-          </a>
-        </AnimateIn>
-
+          <AnimateIn className="lg:col-span-6" delay={0.16}>
+            <a
+              href="#contact"
+              className="group block bg-[#E7E7E7] rounded-2xl p-10 md:p-12 min-h-[220px] border border-black/5 transition-colors hover:bg-[#F0F0F0]"
+            >
+              <div className="h-full flex items-center justify-between gap-8">
+                <div>
+                  <h3 className="text-black font-black  text-xl leading-none uppercase tracking-tight">
+                    Start a Project
+                  </h3>
+                  <p className="mt-4 text-[#555555] text-sm">
+                    Let&apos;s build something enduring.
+                  </p>
+                </div>
+                <motion.svg
+                  className="w-14 h-14 text-black flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.7}
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  initial={false}
+                  whileHover={{ x: 6 }}
+                  transition={{ duration: 0.22, ease: EASE_OUT }}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 12h15m0 0-5-5m5 5-5 5" />
+                </motion.svg>
+              </div>
+            </a>
+          </AnimateIn>
+        </div>
       </div>
     </section>
   );
