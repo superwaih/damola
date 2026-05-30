@@ -91,7 +91,7 @@ export default function Hero() {
           animate={controls}
           variants={image}
         >
-          <div className="relative w-72 h-104 md:w-full md:h-132 rounded-2xl overflow-hidden">
+          <div className="relative w-72 h-104 md:w-full md:h-147.75 rounded-2xl overflow-hidden">
             {/* <PortraitPlaceholder /> */}
             <Image
             src="/images/blessing.png"
