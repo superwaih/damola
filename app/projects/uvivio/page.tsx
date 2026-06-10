@@ -2,13 +2,12 @@ import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import {
   SectionHeader,
-  Reveal,
-  StatCard,
   StaggerList,
   StaggerListItem,
   HeroEntrance,
   MockupReveal,
 } from "@/components/ui/CaseStudyMotion";
+import Image from "next/image";
 
 /* ── Reusable section wrapper ─────────────────────────────────── */
 function Section({
@@ -113,56 +112,51 @@ export default function UvivioCase() {
       <Navbar />
 
       {/* ── HERO ──────────────────────────────────────────────── */}
-      <header className="pt-32 pb-0 px-6 md:px-12">
+      <header className="pt-28 md:pt-32 pb-0 px-6 md:px-12">
         <div className="max-w-6xl mx-auto">
-          <HeroEntrance>
-            {/* Meta tags */}
-            <div className="flex flex-wrap gap-4 mb-6">
-              {[
-                { label: "B2B" },
-                { label: "Product Designer" },
-                { label: "Year", value: "2024" },
-                { label: "Status", value: "Figma" },
-                { label: "Figma", value: "Remote" },
-              ].map(({ label, value }) => (
-                <div key={label} className="flex flex-col gap-0.5">
-                  <span className="text-gray-600 text-[10px] tracking-[0.15em] uppercase">
-                    {label}
-                  </span>
-                  {value && (
-                    <span className="text-gray-300 text-xs">{value}</span>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <h1 className="text-white font-black text-3xl md:text-5xl lg:text-6xl uppercase leading-[1.05] tracking-tight max-w-3xl mb-10">
+          <HeroEntrance className="flex flex-col items-center text-center">
+            <h1 className="text-white font-normal text-4xl sm:text-5xl md:text-7xl lg:text-[5.75rem] xl:text-[96px] uppercase leading-[1.18] max-w-5xl mb-10">
               UVIVIO: AI POWERED
               <br />
               LEARNING PLATFORM
             </h1>
 
-            <p className="text-[#C6C6C6] text-sm md:text-base leading-relaxed max-w-xl mb-12">
-              Redesigning a spatial dashboard for the next generation of remote
-              learners — building intuitive, impact-driven and more digital
-              connections.
+            <p className="text-[#9CA3AF] text-sm sm:text-base md:text-xl leading-snug max-w-[44rem] mb-16">
+              Architecting a spatial interface for the next generation of ambient
+              computing. A study on depth, motion, and tactile digital surfaces.
             </p>
+
+            <div className="w-full max-w-[896px] border-t border-white/75 pt-8 mb-14">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-7 text-left">
+                {[
+                  { label: "Role", value: "Product Designer" },
+                  { label: "Tools", value: "Figma" },
+                  { label: "Year", value: "2026" },
+                  { label: "Client", value: "Techsity" },
+                ].map(({ label, value }) => (
+                  <div key={label} className="flex flex-col gap-3">
+                    <span className="text-[#6B7280] text-[10px] font-bold tracking-[0.2em] uppercase">
+                      {label}
+                    </span>
+                    <span className="text-white text-sm font-medium">
+                      {value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </HeroEntrance>
 
           {/* Hero mockup — slightly delayed scale-in */}
           <MockupReveal delay={0.2}>
-            <div className="w-full h-64 md:h-[28rem] rounded-2xl overflow-hidden bg-gradient-to-br from-indigo-700 via-purple-700 to-blue-900 flex items-center justify-center gap-4 p-8">
-              {[...Array(3)].map((_, i) => (
-                <div
-                  key={i}
-                  className={`bg-white/10 border border-white/20 rounded-xl flex-1 h-full max-w-[260px] flex flex-col gap-2 p-4 opacity-${i === 1 ? "100" : "60"}`}
-                >
-                  <div className="h-2 w-3/4 bg-white/30 rounded-full" />
-                  <div className="h-1.5 w-1/2 bg-white/20 rounded-full" />
-                  <div className="flex-1 bg-white/5 rounded-lg mt-2" />
-                  <div className="h-6 w-20 bg-white/20 rounded-lg" />
-                </div>
-              ))}
+            <div className="w-full h-64 md:h-[521px] rounded-2xl overflow-hidden  flex items-center justify-center gap-4 p-8">
+              <Image
+                width={1280}
+                height={522}
+                className="w-full h-full object-contain object-center"
+                src="/images/uvi.svg"
+                alt="Uvivio product interface"
+              />
             </div>
           </MockupReveal>
         </div>

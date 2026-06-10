@@ -2,9 +2,6 @@ import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import {
   SectionHeader,
-  Reveal,
-  StaggerList,
-  StaggerListItem,
   HeroEntrance,
   MockupReveal,
 } from "@/components/ui/CaseStudyMotion";
@@ -107,28 +104,10 @@ export default function PowpupCase() {
       <Navbar />
 
       {/* ── HERO ──────────────────────────────────────────────── */}
-      <header className="pt-32 pb-0 px-6 md:px-12">
+      <header className="pt-28 md:pt-32 pb-0 px-6 md:px-12">
         <div className="max-w-6xl mx-auto">
-          <HeroEntrance>
-            {/* Meta */}
-            <div className="flex flex-wrap gap-6 mb-6">
-              {[
-                { label: "Type", value: "Mobile App" },
-                { label: "Role", value: "Product Designer" },
-                { label: "Year", value: "2024" },
-                { label: "Tool", value: "Figma" },
-                { label: "Status", value: "Concept" },
-              ].map(({ label, value }) => (
-                <div key={label} className="flex flex-col gap-0.5">
-                  <span className="text-gray-600 text-[10px] tracking-[0.15em] uppercase">
-                    {label}
-                  </span>
-                  <span className="text-gray-300 text-xs">{value}</span>
-                </div>
-              ))}
-            </div>
-
-            <h1 className="text-white font-black text-3xl md:text-5xl lg:text-[3.5rem] uppercase leading-[1.05] tracking-tight max-w-3xl mb-8">
+          <HeroEntrance className="flex flex-col items-center text-center">
+            <h1 className="text-white font-normal text-4xl sm:text-5xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] uppercase leading-[1.18] max-w-6xl mb-10">
               POWPUP: CREATE
               <br />
               SPONTANEOUS EVENTS
@@ -136,12 +115,33 @@ export default function PowpupCase() {
               AND FLEXIBLE SPACE HOSTING
             </h1>
 
-            <p className="text-[#C6C6C6] text-sm md:text-base leading-relaxed max-w-xl mb-12">
+            <p className="text-[#9CA3AF] text-sm sm:text-base md:text-xl leading-snug max-w-[44rem] mb-16">
               PopUp is a mobile app that allows users to create and join
               spontaneous events &amp; social &ldquo;PopUps&rdquo;. Users can browse local
               events, create their own, and connect with others attending
               through an activity-driven community platform.
             </p>
+
+            <div className="w-full max-w-[896px] border-t border-white/75 pt-8 mb-14">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-8 gap-y-7 text-left">
+                {[
+                  { label: "Type", value: "Mobile App" },
+                  { label: "Role", value: "Product Designer" },
+                  { label: "Tools", value: "Figma" },
+                  { label: "Year", value: "2024" },
+                  { label: "Status", value: "Concept" },
+                ].map(({ label, value }) => (
+                  <div key={label} className="flex flex-col gap-3">
+                    <span className="text-[#6B7280] text-[10px] font-bold tracking-[0.2em] uppercase">
+                      {label}
+                    </span>
+                    <span className="text-white text-sm font-medium">
+                      {value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </HeroEntrance>
 
           {/* Hero mockup */}
