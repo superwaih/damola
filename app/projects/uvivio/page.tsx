@@ -29,6 +29,46 @@ function Section({
   );
 }
 
+function UvivioStepTitle({ number, title }: { number: string; title: string }) {
+  return (
+    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
+      <span className="font-mono text-[2rem] font-black leading-none tracking-[0.08em] text-[#9CA3AF] md:text-[2.25rem]">
+        {number}
+      </span>
+      <span className="text-[2rem] font-black uppercase leading-none tracking-[0.16em] text-white md:text-[2.25rem]">
+        / {title}
+      </span>
+    </div>
+  );
+}
+
+function UvivioTextSection({
+  number,
+  title,
+  left,
+  children,
+}: {
+  number: string;
+  title: string;
+  left?: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="bg-black py-12 md:py-14">
+      <div className="mx-auto grid max-w-[1280px] gap-8 px-6 md:grid-cols-[1fr_minmax(31rem,41rem)] md:gap-16 md:px-0">
+        <div>
+          <UvivioStepTitle number={number} title={title} />
+          {left}
+        </div>
+
+        <div className="text-[15px] font-semibold leading-[1.28] text-[#9CA3AF] md:text-base">
+          {children}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ── Mock screen placeholder ──────────────────────────────────── */
 function MockScreen({
   gradient = "from-indigo-900 via-purple-800 to-blue-900",
@@ -51,27 +91,6 @@ function MockScreen({
           <div className="h-6 w-16 bg-white/20 rounded" />
           <div className="h-6 w-10 bg-white/10 rounded" />
         </div>
-      </div>
-    </div>
-  );
-}
-
-/* ── Feature card ─────────────────────────────────────────────── */
-function FeatureCard({
-  label,
-  description,
-  gradient,
-}: {
-  label: string;
-  description: string;
-  gradient: string;
-}) {
-  return (
-    <div className="bg-[#1a1a1a] rounded-2xl overflow-hidden">
-      <MockScreen gradient={gradient} aspect="aspect-[4/3]" />
-      <div className="p-5">
-        <p className="text-white text-sm font-medium mb-1">{label}</p>
-        <p className="text-gray-500 text-xs leading-relaxed">{description}</p>
       </div>
     </div>
   );
@@ -163,212 +182,144 @@ export default function UvivioCase() {
       </header>
 
       {/* ── 01 OVERVIEW ───────────────────────────────────────── */}
-      <Section number="01" title="Overview">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
-          <div className="flex flex-col gap-5">
-            <p className="text-gray-300 text-sm leading-relaxed">
-              UVIVIO is an adaptive learning platform designed for the next
-              generation of students and professionals. The platform uses AI to
-              personalise learning paths, recommend resources, and track
-              progress across multiple subjects and skill sets.
-            </p>
-            <p className="text-gray-500 text-sm leading-relaxed">
-              As the lead product designer on V2, I was responsible for
-              redesigning the core dashboard experience — moving from a static,
-              content-heavy layout to a dynamic, personalised interface that
-              reduces cognitive load and increases engagement.
-            </p>
-            <p className="text-gray-500 text-sm leading-relaxed">
-              The redesign involved deep user research, iterative prototyping,
-              and close collaboration with engineers and stakeholders to ship a
-              cohesive product experience.
-            </p>
+      <section className="border-t border-white/5 bg-black pt-14 md:pt-20">
+        <div className="mx-auto grid max-w-[1280px] gap-8 px-6 md:grid-cols-[1fr_minmax(31rem,41rem)] md:gap-16 md:px-0">
+          <div className="flex items-baseline gap-3">
+            <span className="font-mono text-3xl font-black leading-none tracking-[-0.03em] text-[#8F96A3] md:text-[2.5rem]">
+              01 /
+            </span>
+            <h2 className="text-lg font-black uppercase leading-none tracking-[0.18em] text-white md:text-2xl">
+              Overview
+            </h2>
           </div>
 
-          {/* Screenshot grid */}
-          <div className="grid grid-cols-2 gap-3">
-            <MockScreen
-              gradient="from-indigo-800 via-blue-900 to-purple-900"
-              aspect="aspect-[3/4]"
-            />
-            <MockScreen
-              gradient="from-purple-800 via-indigo-700 to-blue-800"
-              aspect="aspect-[3/4]"
-              className="mt-6"
-            />
-            <MockScreen
-              gradient="from-blue-900 via-purple-800 to-indigo-900"
-              aspect="aspect-video"
-              className="col-span-2"
-            />
-          </div>
+          <p className="max-w-[41rem] text-sm font-semibold leading-[1.18] text-[#9CA3AF] md:text-base">
+            Uvivio is an AI-driven learning platform designed to help
+            individuals seamlessly transition from one career path to another.
+            By combining personalized learning roadmaps with human mentorship,
+            the platform removes the overwhelm and uncertainty that often comes
+            with starting over professionally. At the core of the experience is
+            Alfred AI — an intelligent assistant that guides users from
+            confusion to clarity, and from learning to real-world readiness.
+          </p>
         </div>
-      </Section>
+
+        <div className="mx-auto mt-7 w-full max-w-[1280px] overflow-hidden px-6 md:mt-8 md:px-0">
+          <Image
+            src="/images/uvivo-overview.png"
+            alt="Uvivio overview interface montage"
+            width={1280}
+            height={800}
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            className="h-auto w-full"
+          />
+        </div>
+      </section>
 
       {/* ── 02 THE PROBLEM ────────────────────────────────────── */}
-      <Section number="02" title="The Problem">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-20">
-          <div className="flex flex-col gap-6">
-            <p className="text-gray-300 text-sm leading-relaxed">
-              Students using the original UVIVIO platform were dropping off
-              within the first two weeks of signing up. Exit surveys and
-              session recordings pointed to a core UX issue: the platform
-              felt overwhelming and impersonal.
-            </p>
+      <UvivioTextSection number="02" title="The Problem">
+        <div className="space-y-5">
+          <p>
+            Career transition today is broken. People trying to switch careers
+            often face:
+          </p>
 
-            <div className="flex flex-col gap-3">
-              {[
-                "Lack of personalised learning paths made navigation feel aimless",
-                "No clear hierarchy of tasks meant users didn't know where to start",
-                "A content-heavy dashboard overwhelmed new users on first login",
-                "Progress tracking was fragmented and hard to interpret",
-              ].map((point) => (
-                <div key={point} className="flex gap-3">
-                  <span className="text-purple-500 mt-1 flex-shrink-0">—</span>
-                  <p className="text-gray-500 text-sm leading-relaxed">{point}</p>
-                </div>
-              ))}
-            </div>
+          <ul className="list-disc space-y-0 pl-6 marker:text-[#9CA3AF]">
+            <li>Information overload; too many resources, no clear path</li>
+            <li>
+              Lack of structure; no step-by-step guidance tailored to their
+              background
+            </li>
+            <li>Learning alone without support or accountability</li>
+            <li>No way to know if they’re progressing correctly</li>
+          </ul>
+
+          <div>
+            <p>Most platforms either:</p>
+            <ul className="list-disc space-y-0 pl-6 marker:text-[#9CA3AF]">
+              <li>Provide generic courses, or</li>
+              <li>Offer mentorship without structured learning</li>
+            </ul>
           </div>
 
-          <div className="bg-[#1a1a1a] rounded-2xl p-6 md:p-8 flex flex-col gap-4">
-            <p className="text-gray-600 text-xs tracking-[0.15em] uppercase mb-2">
-              Key Metrics (Pre-redesign)
-            </p>
-            {[
-              { stat: "68%", desc: "Drop-off within first 2 weeks" },
-              { stat: "4.2min", desc: "Average session duration" },
-              { stat: "23%", desc: "Course completion rate" },
-              { stat: "2.8/5", desc: "User satisfaction score" },
-            ].map(({ stat, desc }) => (
-              <div key={stat} className="flex items-center gap-4 py-3 border-t border-white/5">
-                <span className="text-white font-bold text-xl w-20 flex-shrink-0">
-                  {stat}
-                </span>
-                <span className="text-gray-500 text-sm">{desc}</span>
-              </div>
-            ))}
-          </div>
+          <p>
+            There is no unified system that combines personalized learning +
+            real-time support + progress validation
+          </p>
         </div>
-      </Section>
+      </UvivioTextSection>
 
       {/* ── 03 SOLUTION ───────────────────────────────────────── */}
-      <Section number="03" title="Solution">
-        <div className="max-w-2xl flex flex-col gap-5 mb-12">
-          <p className="text-gray-300 text-sm leading-relaxed">
-            The redesigned UVIVIO V2 introduces an AI-driven personalisation
-            layer that surfaces the right content at the right time. A smart
-            onboarding flow evaluates each user&apos;s goals, background, and
-            learning style before they touch the dashboard.
+      <UvivioTextSection number="03" title="Solution">
+        <div className="space-y-5">
+          <p>
+            Uvivio introduces a guided, AI-powered transition experience where
+            users are not just learning — they are being actively guided.
           </p>
-          <p className="text-gray-500 text-sm leading-relaxed">
-            The result is a fully contextualised experience — every element on
-            screen is relevant to that specific user&apos;s journey, reducing
-            cognitive overhead and dramatically increasing time-on-platform.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <MockScreen
-            gradient="from-violet-800 via-purple-700 to-indigo-800"
-            aspect="aspect-[4/5]"
-          />
-          <MockScreen
-            gradient="from-indigo-700 via-blue-800 to-purple-900"
-            aspect="aspect-[4/5]"
-            className="md:mt-8"
-          />
-          <MockScreen
-            gradient="from-purple-900 via-violet-700 to-indigo-700"
-            aspect="aspect-[4/5]"
-          />
+          <div>
+            <p>Instead of asking:</p>
+            <p>“What should I learn next?”</p>
+          </div>
+
+          <div>
+            <p>Users are told:</p>
+            <p>
+              “Here’s your next step — and here’s support if you get stuck.”
+            </p>
+          </div>
         </div>
-      </Section>
+      </UvivioTextSection>
 
       {/* ── 04 GOALS ──────────────────────────────────────────── */}
-      <Section number="04" title="Goals">
-        <div className="grid md:grid-cols-3 gap-5">
-          {[
-            {
-              n: "01",
-              title: "Reduce early drop-off",
-              body: "Increase 2-week retention from 32% to above 60% through personalised onboarding and a clearer first-time experience.",
-            },
-            {
-              n: "02",
-              title: "Increase course completion",
-              body: "Help learners finish what they start by providing adaptive roadmaps and contextual nudges at the right moments.",
-            },
-            {
-              n: "03",
-              title: "Personalise at scale",
-              body: "Use AI to tailor the dashboard, recommendations, and progress tracking to each individual user without manual configuration.",
-            },
-          ].map(({ n, title, body }) => (
-            <div key={n} className="bg-[#1a1a1a] rounded-2xl p-6 flex flex-col gap-3">
-              <span className="text-gray-600 text-xs font-mono">{n}</span>
-              <h4 className="text-white font-semibold text-sm">{title}</h4>
-              <p className="text-gray-500 text-xs leading-relaxed">{body}</p>
-            </div>
-          ))}
+      <UvivioTextSection number="04" title="Goals">
+        <div className="space-y-5">
+          <p>Design a platform that:</p>
+
+          <ul className="list-disc space-y-0 pl-6 marker:text-[#9CA3AF]">
+            <li>
+              Provides a clear, personalized roadmap for career transition
+            </li>
+            <li>Supports users with AI + human mentorship</li>
+            <li>Reduces drop-off during the learning journey</li>
+            <li>
+              Builds confidence through validation and accountability
+            </li>
+          </ul>
         </div>
-      </Section>
+      </UvivioTextSection>
 
       {/* ── 05 KEY FEATURES ───────────────────────────────────── */}
-      <Section number="05" title="Key Features">
-        <div className="flex flex-col gap-8">
-          {/* Feature label intro */}
-          <p className="text-gray-500 text-xs tracking-[0.15em] uppercase">
-            Features
-          </p>
-          <div className="flex flex-wrap gap-2 mb-2">
-            {[
-              "Personalised Roadmap",
-              "On-Demand Video",
-              "Recommendations",
-              "ThinkPad",
-            ].map((f) => (
-              <span
-                key={f}
-                className="text-[#C6C6C6] text-xs border border-white/10 px-3 py-1.5 rounded-full"
-              >
-                {f}
-              </span>
-            ))}
-          </div>
+      <UvivioTextSection
+        number="05"
+        title="Key Features"
+        left={
+          <div className="mt-8 space-y-5 text-[15px] font-semibold leading-[1.28] text-[#9CA3AF] md:text-base">
+            <h3 className="text-xl font-black uppercase leading-none tracking-[0] text-white">
+              The Mentee
+            </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <FeatureCard
-              label="Personalized Roadmap Generator"
-              description="Generate tailored learning pathways — users can track step-by-step progress that adapts as they advance, with real-time updates and suggested next courses."
-              gradient="from-indigo-800 via-purple-700 to-blue-900"
-            />
-            <FeatureCard
-              label="On-Demand Video Library"
-              description="An intelligent video suggestion layer that learns from viewing habits and surfaces the most relevant lectures, tutorials, and explainers at the right moment."
-              gradient="from-purple-800 via-indigo-600 to-violet-900"
-            />
-            <FeatureCard
-              label="Smart Recommendations"
-              description="AI-powered content engine that cross-references user goals, completed modules, and peer activity to surface high-value resources throughout the session."
-              gradient="from-blue-900 via-indigo-800 to-purple-800"
-            />
-            <FeatureCard
-              label="ThinkPad"
-              description="An integrated note-taking and idea board workspace that lets students capture thoughts inline while watching lectures or browsing their roadmap."
-              gradient="from-violet-900 via-purple-800 to-indigo-700"
-            />
-          </div>
+            <p>
+              Alfred AI : This is the Backbone of the Uvivio Experience. It
+              acts as;
+            </p>
 
-          {/* Wide feature highlight */}
-          <div className="w-full rounded-2xl overflow-hidden">
-            <MockScreen
-              gradient="from-indigo-900 via-purple-800 to-violet-900"
-              aspect="aspect-[21/9]"
-            />
+            <ul className="list-disc space-y-0 pl-6 marker:text-[#9CA3AF]">
+              <li>A career guide</li>
+              <li>A learning architect</li>
+              <li>A mentor connector</li>
+              <li>A progress validator</li>
+            </ul>
           </div>
-        </div>
-      </Section>
+        }
+      >
+        <p>
+          The key features will be in two sections since we have 2 separate
+          user journey, That is,
+          <br />
+          The Mentee and The Mentor
+        </p>
+      </UvivioTextSection>
 
       {/* ── 06 DESIGN DECISIONS ───────────────────────────────── */}
       <Section number="06" title="Design Decisions">
@@ -476,26 +427,18 @@ export default function UvivioCase() {
       {/* ── DARK MODE MOCKUPS ─────────────────────────────────── */}
       <section className="py-16 md:py-20 border-t border-white/5">
         <div className="max-w-6xl mx-auto px-6 md:px-12">
-          <p className="text-gray-600 text-xs tracking-[0.2em] uppercase mb-8">
+          <p className="text-white text-center text-xs tracking-[0.2em] uppercase mb-8">
             Dark Mode Mockups
           </p>
-
-          {/* Large mockup grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
-            {[
-              "from-[#0d0d1a] via-indigo-950 to-purple-950",
-              "from-[#0a0a14] via-purple-950 to-indigo-950",
-              "from-[#0d1022] via-blue-950 to-indigo-950",
-              "from-[#100a1a] via-violet-950 to-purple-950",
-              "from-[#0a0d1c] via-indigo-950 to-blue-950",
-              "from-[#110a18] via-purple-950 to-violet-950",
-            ].map((g, i) => (
-              <MockScreen
-                key={i}
-                gradient={g}
-                aspect={i === 0 || i === 3 ? "aspect-[4/3]" : "aspect-[4/3]"}
-              />
-            ))}
+          <div className="w-full overflow-hidden  ">
+            <Image
+              src="/images/uvivio-dark-mode-mockups.svg"
+              alt="Uvivio dark mode interface mockups"
+              width={1280}
+              height={800}
+              sizes="(max-width: 1280px) 100vw, 1280px"
+              className="h-auto w-full"
+            />
           </div>
         </div>
       </section>
