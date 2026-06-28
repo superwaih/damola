@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import SelectedWorksMarquee from "@/components/SelectedWorksMarquee";
 import Projects from "@/components/Projects";
 import About from "@/components/About";
 import Mission from "@/components/Mission";
@@ -12,6 +13,7 @@ export default function Home() {
     <main className="bg-[#000000]">
       <Navbar />
       <Hero />
+      <SelectedWorksMarquee />
       <Projects />
       <About />
       <Mission />

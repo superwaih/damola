@@ -29,6 +29,85 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
+/* ── Selected works infinite marquee ───────────────────────────── */
+.works-marquee {
+  --marquee-gap: clamp(12px, 1.65vw, 24px);
+  --slide-height: clamp(180px, 28.75vw, 414px);
+  display: grid;
+  gap: var(--marquee-gap);
+  overflow: hidden;
+  padding-block: clamp(40px, 5.5vw, 80px);
+}
+
+.works-marquee__viewport {
+  overflow: hidden;
+}
+
+.works-marquee__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.works-marquee__group {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--marquee-gap);
+  padding-right: var(--marquee-gap);
+}
+
+.works-marquee__image {
+  width: auto;
+  max-width: none;
+  height: var(--slide-height);
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.works-marquee__track--left {
+  animation: works-scroll-left 56s linear infinite;
+}
+
+.works-marquee__track--right {
+  animation: works-scroll-right 56s linear infinite;
+}
+
+@keyframes works-scroll-left {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes works-scroll-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .works-marquee__viewport {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .works-marquee__viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .works-marquee__track {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .works-marquee__group[aria-hidden="true"] {
+    display: none;
+  }
+}
+
 /* ── Button press feedback ──────────────────────────────────────── */
 /* Scale on :active gives instant tactile feedback */
 .btn {
@@ -68,4 +147,3 @@ body {
   background: white;
   transition: width 200ms var(--ease-out);
 }
-
