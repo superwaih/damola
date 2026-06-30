@@ -94,7 +94,7 @@ export default function Hero() {
           <div className="relative w-30.75 h-38.5 md:w-full md:h-147.75 rounded-2xl overflow-hidden">
             {/* <PortraitPlaceholder /> */}
             <Image
-            src="/images/blessing.png"
+            src="/blessing.svg"
             alt="Blessing Damola Eyiins"
            fill
             />
