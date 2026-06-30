@@ -321,8 +321,36 @@ export default function UvivioCase() {
         </p>
       </UvivioTextSection>
 
+
+
+        <div className="mx-auto mt-7 w-full max-w-[1280px] overflow-hidden px-6 md:mt-8 md:px-0">
+          <Image
+                           src="/svg/uvivivo-one.svg"
+
+            alt="Uvivio overview interface montage"
+            width={1280}
+            height={800}
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            className="h-auto w-full"
+          />
+        </div>
       {/* ── 06 DESIGN DECISIONS ───────────────────────────────── */}
-      <Section number="06" title="Design Decisions">
+      <div className="mx-auto mt-7 w-full max-w-[1280px] overflow-hidden px-6 md:mt-8 md:px-0">
+        <div className="flex flex-col gap-5 mt-4">
+          <h3 className="text-[#9CA3AF] max-w-3xl" >
+            <span className="text-white">Personalized Roadmap Generation:</span>
+             Users input their current background + desired career, Alfred generates a step-by-step transition roadmap and tailor it to their skill gaps, pace and goals. Breaks roadmap into digestible lessons and tasks Removes overwhelm by focusing on what matters now</h3>
+
+ <Image
+                           src="/svg/personalize.svg"
+
+            alt="Uvivio overview interface montage"
+            width={1280}
+            height={800}
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            className="h-auto w-full"
+          />
+        </div>
         <DesignDecision
           number="1."
           title="Pre-Guided Personal Evaluation"
@@ -347,7 +375,7 @@ export default function UvivioCase() {
           body="Every metric shown on the dashboard — streaks, scores, completion rates — is presented with plain-language context. Instead of 'Score: 74%', users see 'You're performing better than 68% of learners at this stage.' This framing turns abstract data into motivating feedback."
           gradient="from-violet-800 via-purple-900 to-blue-800"
         />
-      </Section>
+      </div>
 
       {/* ── 07 EXPECTED IMPACT ────────────────────────────────── */}
       <Section number="07" title="Expected Impact">
