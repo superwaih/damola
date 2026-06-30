@@ -63,7 +63,7 @@ export default function Hero() {
             variants={item}
             className="text-[#C6C6C6] text-sm md:text-base leading-relaxed max-w-md"
           >
-            My name is Blessing Damola Eyiins, I&apos;m a Product Designer
+            My name is Blessing Damola Eyinla, I&apos;m a Product Designer
             focused on crafting intuitive web and mobile experiences that
             balance usability, clarity and business impact.
           </motion.p>
