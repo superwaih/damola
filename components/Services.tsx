@@ -1,14 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { AnimateIn } from "@/components/ui/AnimateIn";
-import { ProductDesignThumb, UvivioMobileMockup } from "@/components/ui/Mockups";
 
 const EASE_OUT = [0.23, 1, 0.32, 1] as const;
 
 const sideServices = [
   { label: "MOBILE APP DESIGN", kind: "mobile" as const },
   { label: "WEBSITE DESIGN", kind: "web" as const },
+];
+
+const designSamples = [
+  { src: "/design-samples/design-1.png", alt: "Product design interface sample 1" },
+  { src: "/design-samples/design-2.png", alt: "Product design interface sample 2" },
+  { src: "/design-samples/design-3.png", alt: "Product design interface sample 3" },
+  { src: "/design-samples/design-4.png", alt: "Product design interface sample 4" },
+  { src: "/design-samples/design-5.png", alt: "Product design interface sample 5" },
+  { src: "/design-samples/design-6.png", alt: "Product design interface sample 6" },
 ];
 
 function ProductIcon() {
@@ -60,24 +69,34 @@ export default function Services() {
                 </h3>
               </div>
 
-              <div className="px-3 pb-3 grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1">
-                <div className="rounded-xl overflow-hidden min-h-[260px]">
-                  <motion.div
-                    className="w-full h-full"
-                    whileHover={{ scale: 1.03 }}
-                    transition={{ duration: 0.45, ease: EASE_OUT }}
-                  >
-                    <ProductDesignThumb />
-                  </motion.div>
-                </div>
-                <div className="rounded-xl overflow-hidden min-h-[260px]">
-                  <motion.div
-                    className="w-full h-full"
-                    whileHover={{ scale: 1.03 }}
-                    transition={{ duration: 0.45, ease: EASE_OUT }}
-                  >
-                    <UvivioMobileMockup />
-                  </motion.div>
+              <div
+                className="design-samples-marquee flex-1 px-3 pb-3"
+                role="region"
+                aria-label="Product design samples"
+              >
+                <div className="design-samples-marquee__track">
+                  {[false, true].map((duplicate) => (
+                    <div
+                      key={duplicate ? "duplicate" : "original"}
+                      className="design-samples-marquee__group"
+                      aria-hidden={duplicate || undefined}
+                    >
+                      {designSamples.map(({ src, alt }) => (
+                        <div
+                          key={`${duplicate ? "duplicate" : "original"}-${src}`}
+                          className="relative aspect-[19/14] w-[280px] shrink-0 overflow-hidden rounded-xl sm:w-[320px]"
+                        >
+                          <Image
+                            src={src}
+                            alt={duplicate ? "" : alt}
+                            fill
+                            sizes="(max-width: 640px) 280px, 320px"
+                            className="object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ))}
                 </div>
               </div>
 

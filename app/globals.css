@@ -108,6 +108,59 @@ body {
   }
 }
 
+/* ── Product design samples infinite marquee ───────────────────── */
+.design-samples-marquee {
+  --design-sample-gap: 12px;
+  overflow: hidden;
+}
+
+.design-samples-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: design-samples-scroll 36s linear infinite;
+  will-change: transform;
+}
+
+.design-samples-marquee__group {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--design-sample-gap);
+  padding-right: var(--design-sample-gap);
+}
+
+@keyframes design-samples-scroll {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .design-samples-marquee:hover .design-samples-marquee__track {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .design-samples-marquee {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .design-samples-marquee::-webkit-scrollbar {
+    display: none;
+  }
+
+  .design-samples-marquee__track {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .design-samples-marquee__group[aria-hidden="true"] {
+    display: none;
+  }
+}
+
 /* ── Button press feedback ──────────────────────────────────────── */
 /* Scale on :active gives instant tactile feedback */
 .btn {
