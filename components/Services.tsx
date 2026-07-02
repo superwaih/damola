@@ -64,7 +64,7 @@ export default function Services() {
             <article className="card-hover h-full rounded-2xl overflow-hidden bg-[#050505] border border-white/5 flex flex-col">
               <div className="px-8 pt-9 pb-6">
                 <ProductIcon />
-                <h3 className="mt-7 text-white font-bold text-4xl leading-none uppercase tracking-tight">
+                <h3 className="mt-7 text-white font-bold text-2xl leading-none uppercase tracking-tight">
                   Product Design
                 </h3>
               </div>

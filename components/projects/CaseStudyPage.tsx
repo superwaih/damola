@@ -168,20 +168,29 @@ export function CaseStudyTextSection({
 export function CaseStudyNavigation({
   previous,
   next,
+  mobileNext,
 }: {
   previous?: ProjectLink;
   next?: ProjectLink;
+  mobileNext?: ProjectLink;
 }) {
   const split = Boolean(previous && next);
+  const mobileProject = mobileNext ?? next;
 
-  const renderLink = (link: ProjectLink, direction: "previous" | "next") => {
+  const renderLink = (
+    link: ProjectLink,
+    direction: "previous" | "next",
+    { centered = false, showArrow = true } = {},
+  ) => {
     const isPrevious = direction === "previous";
 
     return (
       <Link
         href={link.href}
         className={`group flex min-h-[218px] flex-col justify-between bg-black px-6 pt-12 pb-6 focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-white md:min-h-[342px] md:px-12 md:pb-[68px] ${
-          split
+          centered
+            ? "items-center"
+            : split
             ? isPrevious
               ? "items-start"
               : "items-end"
@@ -192,8 +201,12 @@ export function CaseStudyNavigation({
           {isPrevious ? "Previous project" : "Next project"}
         </span>
 
-        <span className="flex items-center gap-4 whitespace-nowrap text-4xl leading-none font-normal uppercase tracking-[-0.045em] text-white md:gap-5 md:text-5xl">
-          {isPrevious && (
+        <span
+          className={`flex w-full items-center gap-4 text-4xl leading-none font-normal uppercase tracking-[-0.045em] text-white md:gap-5 md:text-5xl ${
+            centered ? "justify-center whitespace-normal text-center" : "whitespace-nowrap"
+          }`}
+        >
+          {showArrow && isPrevious && (
             <svg
               className="size-8 shrink-0 transition-transform duration-200 ease-[var(--ease-out)] group-hover:-translate-x-1"
               viewBox="0 0 32 32"
@@ -208,7 +221,7 @@ export function CaseStudyNavigation({
             </svg>
           )}
           {link.label}
-          {!isPrevious && (
+          {showArrow && !isPrevious && (
             <svg
               className="size-8 shrink-0 transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-1"
               viewBox="0 0 32 32"
@@ -228,12 +241,16 @@ export function CaseStudyNavigation({
   };
 
   return (
-    <nav
-      aria-label="Case study navigation"
-      className={`grid ${split ? "md:grid-cols-2" : "grid-cols-1"}`}
-    >
-      {previous && renderLink(previous, "previous")}
-      {next && renderLink(next, "next")}
+    <nav aria-label="Case study navigation">
+      <div className="md:hidden">
+        {mobileProject &&
+          renderLink(mobileProject, "next", { centered: true, showArrow: false })}
+      </div>
+
+      <div className={`hidden md:grid ${split ? "md:grid-cols-2" : "md:grid-cols-1"}`}>
+        {previous && renderLink(previous, "previous")}
+        {next && renderLink(next, "next")}
+      </div>
     </nav>
   );
 }

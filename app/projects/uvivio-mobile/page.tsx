@@ -346,6 +346,7 @@ export default function UvivioMobileCase() {
 
       <CaseStudyNavigation
         previous={{ href: "/projects/powpup", label: "Powpup" }}
+        mobileNext={{ href: "/projects/uvivio", label: "Uvivio" }}
       />
     </CaseStudyPage>
   );
