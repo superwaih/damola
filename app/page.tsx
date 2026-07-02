@@ -5,6 +5,7 @@ import Projects from "@/components/Projects";
 import About from "@/components/About";
 import Mission from "@/components/Mission";
 import Services from "@/components/Services";
+import BottomSlider from "@/components/BottomSlider";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <About />
       <Mission />
       <Services />
+      <BottomSlider />
       <Testimonials />
       <Footer />
     </main>

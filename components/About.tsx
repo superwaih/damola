@@ -105,13 +105,13 @@ export default function About() {
             {workExperience.map(({ company, role, period }) => (
               <StaggerItem key={company}>
                 <div className="bg-[#020202] rounded-xl px-6 md:px-7 py-7 grid grid-cols-1 md:grid-cols-[1.4fr_0.9fr_auto] gap-4 md:gap-6 items-center">
-                  <p className="text-white text-lg  leading-snug">
+                  <p className="text-white text-lg font-medium  leading-snug">
                     {company}
                   </p>
-                  <p className="text-[#E7E7E7] text-base  leading-snug md:text-center">
+                  <p className="text-white text-sm  md:text-base  leading-snug md:text-center">
                     {role}
                   </p>
-                  <p className="text-[#C9C9C9] text-base  leading-snug md:justify-self-end">
+                  <p className="text-[#B8B8C7] text-sm md:text-base  leading-snug md:justify-self-end">
                     {period}
                   </p>
                 </div>

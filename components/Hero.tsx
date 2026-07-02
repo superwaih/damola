@@ -2,7 +2,6 @@
 
 import { motion, useAnimationControls } from "framer-motion";
 import { useEffect } from "react";
-import { PortraitPlaceholder } from "@/components/ui/Mockups";
 import Image from "next/image";
 
 const EASE_OUT = [0.23, 1, 0.32, 1] as const;
@@ -32,7 +31,7 @@ export default function Hero() {
 
   return (
     <section className="min-h-screen  flex items-center pt-20 pb-16 px-6 md:px-12">
-      <div className="w-full max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-8 items-center">
+      <div className="w-full max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-8 items-center">
 
         {/* Text side — staggered entry */}
         <motion.div

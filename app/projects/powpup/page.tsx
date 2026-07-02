@@ -1,95 +1,9 @@
-import Navbar from "@/components/Navbar";
-import { HeroEntrance, MockupReveal } from "@/components/ui/CaseStudyMotion";
-import Image from "next/image";
-import Link from "next/link";
-
-type ImageTone = "purple" | "silver" | "dark";
-
-type CaseStudyImageProps = {
-  alt: string;
-  label: string;
-  src?: string;
-  aspect?: string;
-  tone?: ImageTone;
-};
-
-const imageTones: Record<ImageTone, string> = {
-  purple:
-    "bg-[radial-gradient(circle_at_75%_35%,rgba(111,73,255,0.65),transparent_28%),linear-gradient(135deg,#030207_12%,#13062f_55%,#29108a)]",
-  silver:
-    "bg-[radial-gradient(circle_at_72%_48%,rgba(255,255,255,0.95),transparent_14%),linear-gradient(125deg,#253737,#84908e_48%,#d7d8d5)]",
-  dark: "bg-[linear-gradient(135deg,#111827,#20201f_52%,#09090b)]",
-};
-
-function CaseStudyImage({
-  alt,
-  label,
-  src,
-  aspect = "aspect-[2/1]",
-  tone = "silver",
-}: CaseStudyImageProps) {
-  return (
-    <div
-      className={`relative w-full overflow-hidden ${aspect} ${imageTones[tone]}`}
-      data-image-slot={label}
-    >
-      {src ? (
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes="(max-width: 1280px) 100vw, 1280px"
-          className="object-cover"
-        />
-      ) : (
-        <div className="absolute inset-0 flex items-center justify-center p-6">
-          <span className="border border-white/20 bg-black/25 px-4 py-2 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-white/60 backdrop-blur-sm">
-            {label} image placeholder
-          </span>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function StudyTitle({ number, title }: { number: string; title: string }) {
-  return (
-    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
-      <span className="font-mono text-[2rem] font-black leading-none tracking-[0.08em] text-[#9CA3AF] md:text-[2.25rem]">
-        {number}
-      </span>
-      <h2 className="text-[2rem] font-black uppercase leading-none tracking-[0.14em] text-white md:text-[2.25rem]">
-        / {title}
-      </h2>
-    </div>
-  );
-}
-
-function TextSection({
-  number,
-  title,
-  children,
-  after,
-}: {
-  number: string;
-  title: string;
-  children: React.ReactNode;
-  after?: React.ReactNode;
-}) {
-  return (
-    <section className="bg-black py-12 md:py-16">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-0">
-        <div className="grid gap-8 md:grid-cols-[1fr_minmax(31rem,41rem)] md:gap-16">
-          <StudyTitle number={number} title={title} />
-          <div className="text-[15px] font-semibold leading-[1.35] text-[#9CA3AF] md:text-base">
-            {children}
-          </div>
-        </div>
-        {after && <div className="mt-10 md:mt-12">{after}</div>}
-      </div>
-    </section>
-  );
-}
+import CaseStudyPage, {
+  CaseStudyImage,
+  CaseStudyNavigation,
+  CaseStudyTextSection,
+  CaseStudyTitle,
+} from "@/components/projects/CaseStudyPage";
 
 const metadata = [
   { label: "Role", value: "Product Designer" },
@@ -288,56 +202,43 @@ const learnings = [
 
 export default function PowpupCase() {
   return (
-    <main className="min-h-screen bg-black">
-      <Navbar />
-
-      <header className="px-6 pb-0 pt-40 md:px-8 md:pt-48">
-        <div className="mx-auto max-w-[1280px]">
-          <HeroEntrance className="flex flex-col items-center text-center">
-            <h1 className="max-w-[1280px] text-[clamp(2.6rem,6.7vw,6rem)] font-normal uppercase leading-[1.25] tracking-[-0.045em] text-white">
+    <CaseStudyPage
+      hero={{
+        title: (
+          <>
               PowpUp: Create
               <br />
               Spontaneous Events and
               <br />
               Flexible Space Hosting
-            </h1>
-
-            <p className="mt-10 max-w-[64rem] text-sm font-semibold leading-[1.35] text-[#D1D5DB] sm:text-base md:mt-12 md:text-xl">
+          </>
+        ),
+        description: (
+          <>
               PowpUp is a mobile app that allows users to create or join
               spontaneous events (called “PowpUps”) and discover bookable
               spaces instantly. It&apos;s designed for people who want real-life
               experiences without the pressure of extensive planning.
-            </p>
+          </>
+        ),
+        metadata,
+        titleClassName:
+          "max-w-[1280px] text-[clamp(2.6rem,6.7vw,6rem)] font-normal uppercase leading-[1.25] tracking-[-0.045em] text-white",
+        descriptionClassName:
+          "mt-10 max-w-[64rem] text-sm font-semibold leading-[1.35] text-[#D1D5DB] sm:text-base md:mt-12 md:text-xl",
+        media: (
+          <CaseStudyImage
+            label="Hero"
+            src="/svg/p-hero.svg"
+            alt="PowpUp mobile application hero screens"
+            aspect="aspect-[1280/521]"
+            tone="purple"
+          />
+        ),
+      }}
+    >
 
-            <div className="mt-12 w-full max-w-[896px] border-t border-white/70 pt-8 md:mt-14">
-              <div className="grid grid-cols-2 gap-x-8 gap-y-8 text-left md:grid-cols-4">
-                {metadata.map(({ label, value }) => (
-                  <div key={label} className="flex flex-col gap-3">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#6B7280]">
-                      {label}
-                    </span>
-                    <span className="text-sm font-medium text-white">
-                      {value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </HeroEntrance>
-
-          <MockupReveal className="mt-16" delay={0.16}>
-            <CaseStudyImage
-              label="Hero"
-              src="/svg/p-hero.svg"
-              alt="PowpUp mobile application hero screens"
-              aspect="aspect-[1280/521]"
-              tone="purple"
-            />
-          </MockupReveal>
-        </div>
-      </header>
-
-      <TextSection
+      <CaseStudyTextSection
         number="01"
         title="Overview"
         after={
@@ -345,7 +246,7 @@ export default function PowpupCase() {
             label="Overview"
             alt="PowpUp mobile application overview screens"
             aspect="aspect-[1280/800]"
-            tone="dark"
+            tone="neutral-dark"
               src="/svg/p-overview.svg"
 
           />
@@ -362,9 +263,9 @@ export default function PowpupCase() {
             a real plan with far less friction.
           </p>
         </div>
-      </TextSection>
+      </CaseStudyTextSection>
 
-      <TextSection number="02" title="The Problem">
+      <CaseStudyTextSection number="02" title="The Problem">
         <div className="space-y-5">
           <p>
             Creating small-scale events and finding suitable spaces is
@@ -378,9 +279,9 @@ export default function PowpupCase() {
             <li>Attendees, logistics, and payments are fragmented</li>
           </ul>
         </div>
-      </TextSection>
+      </CaseStudyTextSection>
 
-      <TextSection number="03" title="Solution">
+      <CaseStudyTextSection number="03" title="Solution">
         <div className="space-y-5">
           <p>PowpUp introduces a dual-sided platform:</p>
           <ol className="list-decimal pl-6">
@@ -392,9 +293,9 @@ export default function PowpupCase() {
             generate structured, high-quality listings instantly.
           </p>
         </div>
-      </TextSection>
+      </CaseStudyTextSection>
 
-      <TextSection number="04" title="Design Goals & Objectives">
+      <CaseStudyTextSection number="04" title="Design Goals & Objectives">
         <div>
           <p>Design a platform that:</p>
           <ul className="mt-5 list-disc pl-6">
@@ -404,9 +305,9 @@ export default function PowpupCase() {
             <li>Reduces planning stress through AI-powered suggestions</li>
           </ul>
         </div>
-      </TextSection>
+      </CaseStudyTextSection>
 
-      <TextSection
+      <CaseStudyTextSection
         number="05"
         title="Research & Insights"
         after={
@@ -459,9 +360,9 @@ export default function PowpupCase() {
           I conducted interviews with young professionals and students who
           frequently experience fear of missing out or dislike rigid planning.
         </p>
-      </TextSection>
+      </CaseStudyTextSection>
 
-      <TextSection
+      <CaseStudyTextSection
         number="06"
         title="Competitive Analysis"
         after={
@@ -469,7 +370,7 @@ export default function PowpupCase() {
             label="Competitive analysis"
             alt="PowpUp competitive analysis matrix"
             aspect="aspect-[1280/520]"
-            tone="dark"
+            tone="neutral-dark"
               src="/svg/p-competition.svg"
 
           />
@@ -486,11 +387,11 @@ export default function PowpupCase() {
             overload.
           </p>
         </div>
-      </TextSection>
+      </CaseStudyTextSection>
 
       <section className="bg-black py-12 md:py-16">
         <div className="mx-auto max-w-[1280px] px-6 md:px-0">
-          <StudyTitle number="07" title="Key Features" />
+          <CaseStudyTitle number="07" title="Key Features" />
           <div className="mt-12 space-y-16 md:space-y-20">
             {features.map(({ title, paragraphs, label, imageSrc }) => (
               <article key={title}>
@@ -513,7 +414,7 @@ export default function PowpupCase() {
         </div>
       </section>
 
-      <TextSection number="06" title="Design Process">
+      <CaseStudyTextSection number="06" title="Design Process">
         <div className="space-y-7">
           {processSteps.map(({ title, items }) => (
             <div key={title}>
@@ -526,9 +427,9 @@ export default function PowpupCase() {
             </div>
           ))}
         </div>
-      </TextSection>
+      </CaseStudyTextSection>
 
-      <TextSection number="07" title="Key Design Decisions">
+      <CaseStudyTextSection number="07" title="Key Design Decisions">
         <ol className="space-y-7">
           {designDecisions.map(({ title, body }, index) => (
             <li key={title}>
@@ -539,9 +440,9 @@ export default function PowpupCase() {
             </li>
           ))}
         </ol>
-      </TextSection>
+      </CaseStudyTextSection>
 
-      <TextSection number="08" title="Challenges">
+      <CaseStudyTextSection number="08" title="Challenges">
         <ol className="space-y-7">
           {challenges.map(({ title, body }, index) => (
             <li key={title}>
@@ -552,9 +453,9 @@ export default function PowpupCase() {
             </li>
           ))}
         </ol>
-      </TextSection>
+      </CaseStudyTextSection>
 
-      <TextSection number="09" title="What I Learnt">
+      <CaseStudyTextSection number="09" title="What I Learnt">
         <ol className="space-y-7">
           {learnings.map(({ title, body }, index) => (
             <li key={title}>
@@ -565,27 +466,12 @@ export default function PowpupCase() {
             </li>
           ))}
         </ol>
-      </TextSection>
+      </CaseStudyTextSection>
 
-      <nav
-        aria-label="Case study navigation"
-        className="mt-8 grid border-t border-white/30 sm:grid-cols-2"
-      >
-        <Link
-          href="/projects/uvivio"
-          className="flex min-h-40 items-end border-b border-white/30 px-6 py-8 text-sm font-semibold uppercase tracking-[0.08em] text-white transition-colors duration-200 hover:bg-white/5 focus-visible:bg-white/5 focus-visible:outline-none sm:border-b-0 sm:border-r md:px-12"
-        >
-          <span className="mr-3">←</span>
-          Uvivio
-        </Link>
-        <Link
-          href="/projects/uvivio-mobile"
-          className="flex min-h-40 items-end justify-end px-6 py-8 text-right text-sm font-semibold uppercase tracking-[0.08em] text-white transition-colors duration-200 hover:bg-white/5 focus-visible:bg-white/5 focus-visible:outline-none md:px-12"
-        >
-          Uvivio (Mobile App)
-          <span className="ml-3">→</span>
-        </Link>
-      </nav>
-    </main>
+      <CaseStudyNavigation
+        previous={{ href: "/projects/uvivio", label: "Uvivio" }}
+        next={{ href: "/projects/uvivio-mobile", label: "Uvivio (Mobile App)" }}
+      />
+    </CaseStudyPage>
   );
 }

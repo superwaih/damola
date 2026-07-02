@@ -41,7 +41,7 @@ function ScreenIcon() {
 export default function Services() {
   return (
     <section id="services" className="bg-[#000000] py-24 px-6 md:px-12">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <AnimateIn from="none">
           <div className="flex justify-center mb-12">
             <span className="text-[#B2B2B2] text-xs tracking-[0.22em] uppercase border border-white/12 bg-[#0f0f0f] rounded-full px-5 py-2.5">

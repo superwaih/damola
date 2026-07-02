@@ -18,15 +18,15 @@ const liveProjects = [
     image: "/images/live-1.png",
     href: "#",
   },
-  {
-    number: "02",
-    title: "Royalwunderkid Website",
-    date: "June 2025",
-    description:
-      "A visionary platform driving innovation and sustainable solutions across Education, Agriculture, and Energy. I designed a clean, responsive website to showcase their mission, programs, and youth-focused initiatives.",
-    image: "/images/live-2.png",
-    href: "#",
-  },
+  // {
+  //   number: "02",
+  //   title: "Royalwunderkid Website",
+  //   date: "June 2025",
+  //   description:
+  //     "A visionary platform driving innovation and sustainable solutions across Education, Agriculture, and Energy. I designed a clean, responsive website to showcase their mission, programs, and youth-focused initiatives.",
+  //   image: "/images/live-2.png",
+  //   href: "#",
+  // },
 ];
 
 export default function Mission() {

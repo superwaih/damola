@@ -45,7 +45,7 @@ const projects = [
 export default function Projects() {
   return (
     <section id="projects" className="bg-[#000000] py-20 px-6 md:px-12">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-5" >
           {projects.map((project) => (
             <div

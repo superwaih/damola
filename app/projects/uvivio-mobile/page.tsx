@@ -1,95 +1,10 @@
-import Navbar from "@/components/Navbar";
-import { HeroEntrance, MockupReveal } from "@/components/ui/CaseStudyMotion";
-import Image from "next/image";
-import Link from "next/link";
-
-type ImageTone = "blue" | "silver" | "dark";
-
-type CaseStudyImageProps = {
-  alt: string;
-  label: string;
-  src?: string;
-  aspect?: string;
-  tone?: ImageTone;
-};
-
-const imageTones: Record<ImageTone, string> = {
-  blue:
-    "bg-[radial-gradient(circle_at_70%_35%,rgba(74,144,226,0.7),transparent_26%),linear-gradient(135deg,#030711_10%,#071a38_55%,#0a4480)]",
-  silver:
-    "bg-[radial-gradient(circle_at_74%_48%,rgba(255,255,255,0.98),transparent_14%),linear-gradient(125deg,#263737,#86918f_48%,#d8dad7)]",
-  dark: "bg-[linear-gradient(135deg,#030712,#07152f_50%,#101d4d)]",
-};
-
-function CaseStudyImage({
-  alt,
-  label,
-  src,
-  aspect = "aspect-[2/1]",
-  tone = "silver",
-}: CaseStudyImageProps) {
-  return (
-    <div
-      className={`relative w-full overflow-hidden ${aspect} ${imageTones[tone]}`}
-      data-image-slot={label}
-    >
-      {src ? (
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes="(max-width: 1280px) 100vw, 1280px"
-          className="object-cover"
-        />
-      ) : (
-        <div className="absolute inset-0 flex items-center justify-center p-6">
-          <span className="border border-white/20 bg-black/25 px-4 py-2 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-white/60 backdrop-blur-sm">
-            {label} image placeholder
-          </span>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function StudyTitle({ number, title }: { number: string; title: string }) {
-  return (
-    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
-      <span className="font-mono text-[2rem] font-black leading-none tracking-[0.08em] text-[#9CA3AF] md:text-[2.25rem]">
-        {number}
-      </span>
-      <h2 className="text-[2rem] font-black uppercase leading-none tracking-[0.14em] text-white md:text-[2.25rem]">
-        / {title}
-      </h2>
-    </div>
-  );
-}
-
-function TextSection({
-  number,
-  title,
-  children,
-  after,
-}: {
-  number: string;
-  title: string;
-  children: React.ReactNode;
-  after?: React.ReactNode;
-}) {
-  return (
-    <section className="bg-black py-12 md:py-16">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-0">
-        <div className="grid gap-8 md:grid-cols-[1fr_minmax(31rem,41rem)] md:gap-16">
-          <StudyTitle number={number} title={title} />
-          <div className="text-[15px] font-semibold leading-[1.35] text-[#9CA3AF] md:text-base">
-            {children}
-          </div>
-        </div>
-        {after && <div className="mt-10 md:mt-12">{after}</div>}
-      </div>
-    </section>
-  );
-}
+import CaseStudyPage, {
+  CaseStudyImage,
+  CaseStudyNavigation,
+  CaseStudyTextSection,
+  CaseStudyTitle,
+} from "@/components/projects/CaseStudyPage";
+import { MockupReveal } from "@/components/ui/CaseStudyMotion";
 
 type MobileFeature = {
   groupTitle?: string;
@@ -214,52 +129,38 @@ const expectedImpact = [
 
 export default function UvivioMobileCase() {
   return (
-    <main className="min-h-screen bg-black">
-      <Navbar />
-
-      <header className="px-6 pb-0 pt-40 md:px-8 md:pt-48">
-        <div className="mx-auto max-w-[1280px]">
-          <HeroEntrance className="flex flex-col items-center text-center">
-            <h1 className="text-[clamp(3rem,7vw,6rem)] font-normal uppercase leading-[1.15] tracking-[-0.045em] text-white">
+    <CaseStudyPage
+      hero={{
+        title: (
+          <>
               Uvivio V1
               <br />
               (Mobile App)
-            </h1>
-
-            <p className="mt-10 max-w-[48rem] text-sm font-semibold leading-[1.35] text-[#D1D5DB] sm:text-base md:mt-12 md:text-xl">
+          </>
+        ),
+        description: (
+          <>
               A smarter, human-centered learning experience through mentorship.
-            </p>
+          </>
+        ),
+        metadata,
+        titleClassName:
+          "text-[clamp(3rem,7vw,6rem)] font-normal uppercase leading-[1.15] tracking-[-0.045em] text-white",
+        descriptionClassName:
+          "mt-10 max-w-[48rem] text-sm font-semibold leading-[1.35] text-[#D1D5DB] sm:text-base md:mt-12 md:text-xl",
+        media: (
+          <CaseStudyImage
+            label="Hero"
+            alt="Uvivio V1 mobile application hero screens"
+            aspect="aspect-[1280/521]"
+            tone="blue"
+            src="/svg/u-hero.svg"
+          />
+        ),
+      }}
+    >
 
-            <div className="mt-12 w-full max-w-[896px] border-t border-white/70 pt-8 md:mt-14">
-              <div className="grid grid-cols-2 gap-x-8 gap-y-8 text-left md:grid-cols-4">
-                {metadata.map(({ label, value }) => (
-                  <div key={label} className="flex flex-col gap-3">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#6B7280]">
-                      {label}
-                    </span>
-                    <span className="text-sm font-medium text-white">
-                      {value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </HeroEntrance>
-
-          <MockupReveal className="mt-16" delay={0.16}>
-            <CaseStudyImage
-              label="Hero"
-              alt="Uvivio V1 mobile application hero screens"
-              aspect="aspect-[1280/521]"
-              tone="blue"
-              src="/svg/u-hero.svg"
-
-            />
-          </MockupReveal>
-        </div>
-      </header>
-
-      <TextSection number="01" title="Overview">
+      <CaseStudyTextSection number="01" title="Overview">
         <div className="space-y-5">
           <p>
             Uvivio V1 is a mobile-first learning platform that blends
@@ -275,7 +176,7 @@ export default function UvivioMobileCase() {
             learning discovery, mentorship, and support around core user needs.
           </p>
         </div>
-      </TextSection>
+      </CaseStudyTextSection>
 
       <div className="mx-auto max-w-[1280px]">
         <MockupReveal className="mt-16" delay={0.16}>
@@ -291,7 +192,7 @@ export default function UvivioMobileCase() {
         </MockupReveal>
       </div>
 
-      <TextSection number="02" title="The Problem">
+      <CaseStudyTextSection number="02" title="The Problem">
         <div className="space-y-5">
           <p>
             Most online learning platforms fall into one critical trap: content
@@ -309,9 +210,9 @@ export default function UvivioMobileCase() {
             and feedback.
           </p>
         </div>
-      </TextSection>
+      </CaseStudyTextSection>
 
-      <TextSection number="03" title="Goals">
+      <CaseStudyTextSection number="03" title="Goals">
         <div>
           <p>Design a mobile platform that:</p>
           <ul className="mt-5 list-disc pl-6">
@@ -322,9 +223,9 @@ export default function UvivioMobileCase() {
             <li>Reduces friction in accessing support</li>
           </ul>
         </div>
-      </TextSection>
+      </CaseStudyTextSection>
 
-      <TextSection number="04" title="Solution">
+      <CaseStudyTextSection number="04" title="Solution">
         <div className="space-y-5">
           <p>
             Uvivio V1 was designed as a focused, mentorship-driven learning
@@ -337,11 +238,11 @@ export default function UvivioMobileCase() {
             enables real-time support.
           </p>
         </div>
-      </TextSection>
+      </CaseStudyTextSection>
 
       <section className="bg-black py-12 md:py-16">
         <div className="mx-auto max-w-[1280px] px-6 md:px-0">
-          <StudyTitle number="05" title="Key Features" />
+          <CaseStudyTitle number="05" title="Key Features" />
           <p className="mt-8 max-w-[41rem] text-[15px] font-semibold leading-[1.35] text-[#9CA3AF] md:ml-auto md:text-base">
             The key features are organized around the two journeys at the heart
             of Uvivio: the mentee and the mentor.
@@ -379,7 +280,7 @@ export default function UvivioMobileCase() {
         </div>
       </section>
 
-      <TextSection number="06" title="Design Decisions">
+      <CaseStudyTextSection number="06" title="Design Decisions">
         <ol className="space-y-7">
           {designDecisions.map(({ title, body }, index) => (
             <li key={title}>
@@ -390,9 +291,9 @@ export default function UvivioMobileCase() {
             </li>
           ))}
         </ol>
-      </TextSection>
+      </CaseStudyTextSection>
 
-      <TextSection number="07" title="Expected Impact">
+      <CaseStudyTextSection number="07" title="Expected Impact">
         <ol className="space-y-7">
           {expectedImpact.map(({ title, body }, index) => (
             <li key={title}>
@@ -403,9 +304,9 @@ export default function UvivioMobileCase() {
             </li>
           ))}
         </ol>
-      </TextSection>
+      </CaseStudyTextSection>
 
-      <TextSection number="08" title="What I Learnt">
+      <CaseStudyTextSection number="08" title="What I Learnt">
         <div className="space-y-5">
           <p>
             Designing Uvivio provided valuable insights into building a
@@ -426,7 +327,7 @@ export default function UvivioMobileCase() {
             </li>
           </ul>
         </div>
-      </TextSection>
+      </CaseStudyTextSection>
 
       <section className="bg-black py-12 md:py-16">
         <div className="mx-auto max-w-[1280px] px-6 md:px-0">
@@ -443,15 +344,9 @@ export default function UvivioMobileCase() {
         </div>
       </section>
 
-      <nav aria-label="Case study navigation" className="border-t border-white/30">
-        <Link
-          href="/projects/powpup"
-          className="flex min-h-40 items-end px-6 py-8 text-sm font-semibold uppercase tracking-[0.08em] text-white transition-colors duration-200 hover:bg-white/5 focus-visible:bg-white/5 focus-visible:outline-none md:px-12"
-        >
-          <span className="mr-3">←</span>
-          Powpup
-        </Link>
-      </nav>
-    </main>
+      <CaseStudyNavigation
+        previous={{ href: "/projects/powpup", label: "Powpup" }}
+      />
+    </CaseStudyPage>
   );
 }
