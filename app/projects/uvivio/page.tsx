@@ -88,9 +88,9 @@ export default function UvivioCase() {
         ),
         metadata,
         titleClassName:
-          "mb-10 max-w-7xl text-4xl font-normal uppercase leading-[1.18] text-white sm:text-5xl md:text-7xl lg:text-[5.75rem] xl:text-[96px]",
+          "mb-10 w-full max-w-7xl text-[48px]  lg:text-center font-normal uppercase leading-[1.18]  text-white lg:text-[96px]",
         descriptionClassName:
-          "mb-16 max-w-[44rem] text-sm leading-snug text-[#9CA3AF] sm:text-base md:text-xl",
+          "mb-16 w-full max-w-[44rem] text-sm leading-snug text-[#9CA3AF] sm:text-base md:text-xl",
         media: (
           <div className="flex   h-64 w-full items-center justify-center gap-4 overflow-hidden md:h-[521px]">
               <Image

@@ -42,7 +42,7 @@ export default function Hero() {
         >
           <motion.span
             variants={item}
-            className="text-[#C6C6C6] w-fit rounded-4xl p-2 border-[#1A161699] border text-xs tracking-[0.25em] uppercase"
+            className="w-fit rounded-[32px] border border-[#1A161699] p-2 text-xs uppercase tracking-[0.25em] text-[#C6C6C6]"
           >
             Product Designer 
           </motion.span>

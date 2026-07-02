@@ -104,7 +104,7 @@ export default function About() {
           <Stagger className="mt-7 space-y-4" stagger={0.08}>
             {workExperience.map(({ company, role, period }) => (
               <StaggerItem key={company}>
-                <div className="bg-[#020202] rounded-xl px-6 md:px-7 py-7 grid grid-cols-1 md:grid-cols-[1.4fr_0.9fr_auto] gap-4 md:gap-6 items-center">
+                <div className="bg-[#020202] rounded-xl px-3 md:px-4 py-7 grid grid-cols-1 md:grid-cols-[1.4fr_0.9fr_auto] gap-4 md:gap-6 items-center">
                   <p className="text-white text-lg font-medium  leading-snug">
                     {company}
                   </p>

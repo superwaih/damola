@@ -253,12 +253,12 @@ function ProjectHero({
     <header
       className={
         compact
-          ? "px-6 pb-0 pt-28 md:px-12 md:pt-32"
-          : "px-6 pb-0 pt-40 md:px-8 md:pt-48"
+          ? "px-4 pb-0 pt-28 md:px-12 md:pt-32"
+          : "px-4 pb-0 pt-40 md:px-8 md:pt-48"
       }
     >
-      <div className={compact ? "mx-auto max-w-7xl" : "mx-auto max-w-7xl"}>
-        <HeroEntrance className="flex flex-col items-center text-center">
+      <div className={"mx-auto max-w-7xl"}>
+        <HeroEntrance className="flex w-full flex-col items-center text-center">
           <h1 className={titleClassName}>{title}</h1>
           <p className={descriptionClassName}>{description}</p>
 

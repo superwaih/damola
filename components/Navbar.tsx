@@ -24,7 +24,7 @@ export default function Navbar() {
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: EASE_OUT }}
-        className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 md:px-12 py-5 bg-[#000000]"
+        className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between rounded-[32px] border border-[#1A161699] bg-[#000000] px-6 py-5 md:rounded-none md:border-0 md:px-12"
       >
         <Link href="/" className="text-white font-bold text-base tracking-[0.2em]">
           DAMOLA
