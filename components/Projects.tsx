@@ -79,7 +79,7 @@ export default function Projects() {
                 </div>
 
                 {/* Content */}
-                <div className="p-6 md:p-8">
+                <div className="py-3 md:py-3">
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag) => (
                       <span

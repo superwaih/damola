@@ -88,15 +88,15 @@ export default function UvivioCase() {
         ),
         metadata,
         titleClassName:
-          "mb-10 max-w-5xl text-4xl font-normal uppercase leading-[1.18] text-white sm:text-5xl md:text-7xl lg:text-[5.75rem] xl:text-[96px]",
+          "mb-10 max-w-7xl text-4xl font-normal uppercase leading-[1.18] text-white sm:text-5xl md:text-7xl lg:text-[5.75rem] xl:text-[96px]",
         descriptionClassName:
           "mb-16 max-w-[44rem] text-sm leading-snug text-[#9CA3AF] sm:text-base md:text-xl",
         media: (
-          <div className="flex h-64 w-full items-center justify-center gap-4 overflow-hidden rounded-2xl p-8 md:h-[521px]">
+          <div className="flex   h-64 w-full items-center justify-center gap-4 overflow-hidden md:h-[521px]">
               <Image
                 width={1280}
                 height={522}
-                className="h-full w-full object-contain object-center"
+                className="h-full w-full object-contain object-cover"
                 src="/images/uvi.svg"
                 alt="Uvivio product interface"
               />
@@ -128,7 +128,7 @@ export default function UvivioCase() {
           </p>
         </div>
 
-        <div className="mx-auto mt-7 w-full max-w-[1280px] overflow-hidden px-6 md:mt-8 md:px-0">
+        <div className="mx-auto mt-7 w-full max-w-7xl overflow-hidden px-6 md:mt-8 md:px-0">
           <Image
             src="/images/uvivo-overview.png"
             alt="Uvivio overview interface montage"

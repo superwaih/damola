@@ -257,7 +257,7 @@ function ProjectHero({
           : "px-6 pb-0 pt-40 md:px-8 md:pt-48"
       }
     >
-      <div className={compact ? "mx-auto max-w-7xl" : "mx-auto max-w-[1280px]"}>
+      <div className={compact ? "mx-auto max-w-7xl" : "mx-auto max-w-7xl"}>
         <HeroEntrance className="flex flex-col items-center text-center">
           <h1 className={titleClassName}>{title}</h1>
           <p className={descriptionClassName}>{description}</p>
@@ -288,7 +288,7 @@ function ProjectHero({
           </div>
         </HeroEntrance>
 
-        <MockupReveal className={compact ? undefined : "mt-16"} delay={compact ? 0.2 : 0.16}>
+        <MockupReveal className={compact ? undefined : "mt-16 w-full"} delay={compact ? 0.2 : 0.16}>
           {media}
         </MockupReveal>
       </div>
