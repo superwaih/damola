@@ -190,11 +190,9 @@ export function CaseStudyNavigation({
         className={`group flex min-h-[218px] flex-col justify-between bg-black px-6 pt-12 pb-6 focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-white md:min-h-[342px] md:px-12 md:pb-[68px] ${
           centered
             ? "items-center"
-            : split
-            ? isPrevious
+            : isPrevious
               ? "items-start"
               : "items-end"
-            : "items-center"
         }`}
       >
         <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#858C9A] md:text-xs">
@@ -203,7 +201,11 @@ export function CaseStudyNavigation({
 
         <span
           className={`flex w-full items-center gap-4 text-4xl leading-none font-normal uppercase tracking-[-0.045em] text-white md:gap-5 md:text-5xl ${
-            centered ? "justify-center whitespace-normal text-center" : "whitespace-nowrap"
+            centered
+              ? "justify-center whitespace-normal text-center"
+              : isPrevious
+                ? "justify-start whitespace-nowrap text-left"
+                : "justify-end whitespace-nowrap text-right"
           }`}
         >
           {showArrow && isPrevious && (
@@ -244,7 +246,7 @@ export function CaseStudyNavigation({
     <nav aria-label="Case study navigation">
       <div className="md:hidden">
         {mobileProject &&
-          renderLink(mobileProject, "next", { centered: true, showArrow: false })}
+          renderLink(mobileProject, "next", { showArrow: false })}
       </div>
 
       <div className={`hidden md:grid ${split ? "md:grid-cols-2" : "md:grid-cols-1"}`}>
