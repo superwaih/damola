@@ -62,7 +62,7 @@ export default function Navbar() {
           transition={{ delay: 0.6, duration: 0.4 }}
           className="btn hidden md:inline-block text-white border border-white/50 px-5 py-2 text-[11px] tracking-[0.15em] rounded-full hover:bg-white hover:text-black transition-colors duration-200"
         >
-          HIRE ME
+         RESUME
         </motion.a>
 
         {/* Hamburger */}

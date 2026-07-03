@@ -96,7 +96,7 @@ export default function About() {
           </AnimateIn>
         </div>
 
-        <AnimateIn delay={0.12} className="mt-14 bg-[#070707] rounded-[2rem] p-6 md:p-8 border border-white/5">
+        <AnimateIn delay={0.12} className="mt-14 bg-[#070707] rounded-4xl p-6 md:p-8 border border-white/5">
           <h3 className="text-white font-semibold text-lg md:text-2xl leading-none tracking-tight">
             Work Experience
           </h3>

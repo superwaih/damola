@@ -108,7 +108,7 @@ export default function Services() {
 
           {sideServices.map((service, index) => (
             <AnimateIn key={service.label} className="lg:col-span-3" delay={0.04 * (index + 1)}>
-              <article className="card-hover bg-[#050505] border border-white/5 rounded-2xl p-7 min-h-[250px] flex flex-col">
+              <article className="card-hover bg-[#050505] border border-white/5 rounded-2xl p-7 h-[130px] md:min-h-[250px] flex flex-col">
                 {service.kind === "mobile" ? <SparkleIcon /> : <ScreenIcon />}
                 <div className="flex-1" />
                 <h4 className="text-white font-semibold text-base leading-tight uppercase">
@@ -121,14 +121,14 @@ export default function Services() {
           <AnimateIn className="lg:col-span-6" delay={0.16}>
             <a
               href="#contact"
-              className="group block bg-[#E7E7E7] rounded-2xl p-10 md:p-12 min-h-[220px] border border-black/5 transition-colors hover:bg-[#F0F0F0]"
+              className="group block bg-[#E7E7E7] rounded-2xl p-10 md:p-12 h-[120px] md:min-h-[220px] border border-black/5 transition-colors hover:bg-[#F0F0F0]"
             >
               <div className="h-full flex items-center justify-between gap-8">
                 <div>
-                  <h3 className="text-black font-black  text-xl leading-none uppercase tracking-tight">
+                  <h3 className="text-black font-black text-base md:text-xl leading-none uppercase tracking-tight">
                     Start a Project
                   </h3>
-                  <p className="mt-4 text-[#555555] text-sm">
+                  <p className="mt-4 text-[#555555] text-xs md:text-sm">
                     Let&apos;s build something enduring.
                   </p>
                 </div>
