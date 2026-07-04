@@ -56,7 +56,10 @@ export default function Navbar() {
         </motion.div>
 
         <motion.a
-          href="/#contact"
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open resume PDF in a new tab"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.4 }}
@@ -128,7 +131,11 @@ export default function Navbar() {
               ))}
               <motion.a
                 href="/resume.pdf"
-                className="btn mt-2 text-white border border-white px-10 py-3 text-sm tracking-[0.15em] rounded-full hover:bg-white hover:text-black transition-all"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open resume PDF in a new tab"
+                onClick={() => setOpen(false)}
+                className="btn mt-2 text-white border border-white px-10 py-3 text-sm tracking-[0.15em] rounded-full hover:bg-white hover:text-black transition-colors"
                 variants={{
                   hidden: { opacity: 0, y: 16 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE_OUT } },
